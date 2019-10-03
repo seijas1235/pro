@@ -25,4 +25,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function pago()
+    {
+        return view('admin.pago');
+    }
+    public function publicidad()
+    {
+        return view('admin.publicidad');
+    }
+    public function compra()
+    {
+        return view('admin.compra');
+    }
 }
