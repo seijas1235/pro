@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Pais;
+use App\rutas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use DB;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -37,4 +43,5 @@ class HomeController extends Controller
     {
         return view('admin.compra');
     }
+    
 }

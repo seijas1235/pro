@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('fonts/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{asset('datepicker/datepicker3.css')}}">
     <link rel="stylesheet" href="{{asset('css/css-loader-master/dist/css-loader.css') }}">
+    <link rel="stylesheet" href="{{asset('css/alertify.css') }}">
 </head>
 <body>
         <nav class="navbar navbar-default">
@@ -39,9 +40,11 @@
                     <ul class="nav navbar-nav">
                       <li class="{{request()->is('home*')? 'active': ''}}"><a href="/home">Panel de Control</a></li>
                       <li class="{{request()->is('publicidad*')? 'active': ''}}"><a href="/publicidad">Publicidad</a></li>
-                      <li class="{{request()->is('compra*')? 'active': ''}}"><a href="/compra">Compra de boletos</a></li>
-                      <li class="{{request()->is('pago*')? 'active': ''}}"><a href="/pago">Pago</a></li>
+                      <li class="{{request()->is('hoteles*')? 'active': ''}}"><a href="/hoteles">hoteles</a></li>
+                      <li class="{{request()->is('habitaciones*')? 'active': ''}}"><a href="/habitaciones">Habitaciones</a></li>
                       <li class="{{request()->is('paquetes*')? 'active': ''}}"><a href="/paquetes">Paquetes</a></li>
+                      <li class="{{request()->is('aerolineas*')? 'active': ''}}"><a href="/aerolineas">aerolineas</a></li>
+                      <li class="{{request()->is('vuelos*')? 'active': ''}}"><a href="/vuelos">vuelos</a></li>
                       <li class="{{request()->is('users*')? 'active': ''}}"><a href="/users">Usuarios</a></li>
                       
                       <li><a class="dropdown-item" href="{{ route('logout') }}"
@@ -90,9 +93,63 @@
       <script src="{{asset('js/datatable/jszip.min.js') }}"></script>
       <script src="{{asset('js/datatable/pdfmake.min.js') }}"></script>
       <script src="{{asset('js/jquery.validate.js') }}"></script>
+      <script src="{{asset('js/alertify.js') }}"></script>
       <script type="text/javascript">
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
     @stack('scripts')
+    <script>
+        alertify.defaults = {
+            // dialogs defaults
+            autoReset:true,
+            basic:false,
+            closable:true,
+            closableByDimmer:true,
+            frameless:false,
+            maintainFocus:true, // <== global default not per instance, applies to all dialogs
+            maximizable:true,
+            modal:true,
+            movable:true,
+            moveBounded:false,
+            overflow:true,
+            padding: true,
+            pinnable:true,
+            pinned:true,
+            preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+            resizable:true,
+            startMaximized:false,
+            transition:'pulse',
+        
+            // notifier defaults
+            notifier:{
+                // auto-dismiss wait time (in seconds)  
+                delay:5,
+                // default position
+                position:'bottom-right',
+                // adds a close button to notifier messages
+                closeButton: false
+            },
+        
+            // language resources 
+            glossary:{
+                // dialogs default title
+                title:'Aviso!',
+                // ok button text
+                ok: 'OK',
+                // cancel button text
+                cancel: 'Cancelar'            
+            },
+        
+            // theme settings
+            theme:{
+                // class name attached to prompt dialog input textbox.
+                input:'ajs-input',
+                // class name attached to ok button
+                ok:'ajs-ok',
+                // class name attached to cancel button 
+                cancel:'ajs-cancel'
+            }
+        };
+    </script>
 </body>
 </html>

@@ -121,7 +121,7 @@ var users_table = $('#users-table').DataTable({
                 "<i class='fa fa-btn fa-edit' title='Editar Usuario'></i>" + 
                 "</a>" + "</div>" + 
                 "<div class='float-right col-lg-4'>" + 
-                "<a href='"+urlActual+"/delete/"+full.id+"' class='remove-user'"+ "data-method='delete'"+ ">" + 
+                "<a href='"+urlActual+"/delete/"+full.id+"' class='remove-user'"+ "data-method='get'"+ ">" + 
                 "<i class='fa fa-thumbs-down' title='Desactivar Usuario'></i>" + 
                 "</a>" + "</div>"+
                 "<div class='float-left col-lg-4'>" + 

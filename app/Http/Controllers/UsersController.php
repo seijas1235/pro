@@ -243,16 +243,9 @@ class UsersController extends Controller
 
     }
 
-    public function cargarSelectApertura()
-	{
-        /*$dato = Input::get("user_id");
 
-        if ($dato == ""){
-            $dato = 0;
-        }*/
-
-        $result = User::role(['Recepcion','Ventas'])->where('active', 1)->where('caja_abierta', 0)->get();
-
-		return Response::json( $result);		
+    public function api(){
+        $result=User::get();
+        return Response::json( $result);
     }
 }

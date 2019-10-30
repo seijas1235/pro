@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
     {
         $superadmin= User::create([
             'name'=>'admin',
-            'email'=>'admin@technovation.com.gt',
+            'email'=>'admin@admin.com',
             'username'=>'admin',
             'password'=>bcrypt('admin'),
         ]);
