@@ -35,7 +35,7 @@ Route::group([
     Route::get('/vuelos/{vuelo}/delete' , 'vueloController@destroy');
     Route::put( '/vuelos/{vuelo}/update' , 'vueloController@update')->name('vuelos.update');
     Route::get( '/paisv/cargar' , 'vueloController@cargarSelect')->name('paisv.cargar');
-    Route::get( '/aerolinea/cargar' , 'vueloController@cargaraerolinea')->name('aerolinea.cargar');
+    Route::get( '/aerolineav/cargar' , 'vueloController@cargaraerolinea')->name('aerolinea.cargar');
     
     //hoteles
     Route::get('hoteles' , 'HotelController@index' )->name('hoteles.index');
@@ -59,7 +59,7 @@ Route::group([
     Route::put( '/habitaciones/{habitacion}/update' , 'HabitacionesController@update')->name('habitaciones.update');
     Route::post( '/habitaciones/save' , 'HabitacionesController@store')->name('habitaciones.save');
     Route::get('/habitaciones/{habitacion}/delete' , 'HabitacionesController@destroy');
-    Route::get( '/hoteles/cargar' , 'HabitacionesController@cargarSelect')->name('hotel.cargar');
+    Route::get( '/hotelesh/cargar' , 'HabitacionesController@cargarSelect')->name('hotelh.cargar');
 
     //rutas para publicidad
     Route::get( '/publicidad' , 'PublicidadController@index')->name('publicidad.index');
