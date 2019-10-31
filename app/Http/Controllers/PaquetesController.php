@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -15,11 +14,12 @@ use Validator;
 
 use App\Events\ActualizacionBitacora;
 use App\hotel;
-use App\Publicidad;
+use App\aerolinea;
+use App\paquete;
 
-class PublicidadController extends Controller
+class PaquetesController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,8 +33,9 @@ class PublicidadController extends Controller
 
     public function index()
     {
-  
-        return view ("admin.publicidad.index");
+        $hoteles = hotel::where('estado', 1)->get();
+        $aerolineas = aerolinea::where('estado', 1)->get();
+        return view ("admin.paquetes.index",compact( 'hoteles','aerolineas'));
     }
 
     /**
@@ -53,7 +54,7 @@ class PublicidadController extends Controller
             $data['imagen']='/images/publicidad/'.$image;
          } 
   
-       Publicidad::create($data);                  
+       paquete::create($data);                  
 
       
 
@@ -68,13 +69,15 @@ class PublicidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Publicidad $publicidad, Request $request)
+    public function update(paquete $paquete, Request $request)
     {
-        
-        $image=$publicidad->imagen;
-        $publicidad->descripcion= $request->descripcion;
-        $publicidad->imagen=$image;
-        $publicidad->save();
+        $image=$paquete->imagen;
+        $paquete->descripcion= $request->descripcion;
+        $paquete->precio_paquete= $request->precio_paquete;
+        $paquete->aerolinea_id= $request->aerolinea_id;
+        $paquete->hotel_id= $request->hotel_id;
+        $paquete->imagen=$image;
+        $paquete->save();
 
         return Response::json(['success' => 'Éxito']);
     }
@@ -85,9 +88,9 @@ class PublicidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Publicidad $publicidad, Request $request)
+    public function destroy(paquete $paquete, Request $request)
     {
-        $publicidad->delete();
+        $paquete->delete();
         return Response::json(['success' => 'Éxito']);
         
     }
@@ -95,7 +98,10 @@ class PublicidadController extends Controller
     public function getJson(Request $params)
     {
 
-        $query = 'SELECT * from publicidad';
+        $query = 'SELECT p.id as id,p.descripcion as descripcion,p.hotel_id as hotel_id,p.aerolinea_id as aerolinea_id, h.nombre as hotel,a.nombre as aerolinea, p.precio_paquete  as precio,pa.nombre as pais from paquetes p
+        INNER JOIN hotel h on p.hotel_id=h.id
+        INNER JOIN aerolinea a on p.aerolinea_id=a.id
+        INNER JOIN pais pa on h.pais_id=pa.id';
 
         $result = DB::select($query);
         $api_Result['data'] = $result;
@@ -105,6 +111,12 @@ class PublicidadController extends Controller
     public function cargarSelect()
 	{
         $result = hotel::get();
+
+		return Response::json( $result );		
+    }
+    public function cargarAerolinea()
+	{
+        $result = aerolinea::get();
 
 		return Response::json( $result );		
     }

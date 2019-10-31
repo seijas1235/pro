@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/images/hotel
+/public/images/habitacion
+/public/images/publicidad
+/public/images/paquetes
 /public/storage
 /storage/*.key
 /vendor

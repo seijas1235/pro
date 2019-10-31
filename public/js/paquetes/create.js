@@ -1,17 +1,17 @@
-var validator = $("#HabitacionForm").validate({
+var validator = $("#PaqueteForm").validate({
 	ignore: [],
 	onkeyup:false,
     onclick: false,
 	//onfocusout: true,
 	rules: {
-		nombre_habitacion:{
+		aerolinea_id:{
 			required: true,
 		},
 		hotel_id:{
 			required:true
 		},
 		
-		precio:{
+		precio_paquete:{
 			required:true
 		},
 		descripcion:{
@@ -23,14 +23,14 @@ var validator = $("#HabitacionForm").validate({
 
 	},
 	messages: {
-		nombre_habitacion: {
-			required: "Por favor, ingrese nombre/número de habitación "
+		aerolinea_id: {
+			required: "Por favor, seleccione una aerolinea "
 		},
 		hotel_id:{
 			required:"Por favor, seleccione un hotel"
 		},
 		
-		precio:{
+		precio_paquete:{
 			required:"Por favor, ingrese el precio"
 		},
 		descripcion:{
@@ -41,17 +41,17 @@ var validator = $("#HabitacionForm").validate({
 		}
 	}
 });
-function BorrarFormularioHabitacion() {
-    $("#HabitacionForm :input").each(function () {
+function BorrarFormularioPaquete() {
+    $("#PaqueteForm :input").each(function () {
         $(this).val('');
 	});
 	$('#roles').val('');
 	$('#roles').change();
 };
 
-$("#ButtonHabitacionModal").click(function(event) {
+$("#ButtonPaqueteModal").click(function(event) {
 	event.preventDefault();
-	if ($('#HabitacionForm').valid()) {
+	if ($('#PaqueteForm').valid()) {
 
 		saveModal();
 	} else {
@@ -61,11 +61,11 @@ $("#ButtonHabitacionModal").click(function(event) {
 
 function saveModal(button) {
 	$('.loader').addClass('is-active');	
-	let data = new FormData($('#HabitacionForm')[0]);
+	let data = new FormData($('#PaqueteForm')[0]);
 	var urlActual = $("input[name='urlActual']").val();
 	$.ajax({
 		type: "POST",
-		headers: {'X-CSRF-TOKEN': $('#tokenHabitacion').val()},
+		headers: {'X-CSRF-TOKEN': $('#tokenPaquete').val()},
 		url: urlActual+"/save",
 		data: data,
 		dataType: "json",
@@ -73,9 +73,9 @@ function saveModal(button) {
     	processData: false,
 		success: function(data) {
 			$('.loader').removeClass('is-active');
-			BorrarFormularioHabitacion();
-			$('#modalHabitacion').modal("hide");
-			habitaciones_table.ajax.reload();
+			BorrarFormularioPaquete();
+			$('#modalPaquete').modal("hide");
+			paquetes_table.ajax.reload();
 			alertify.set('notifier','position', 'top-center');
 			alertify.success('Habitación Creada con Éxito!!');
 			
@@ -84,7 +84,7 @@ function saveModal(button) {
 			$('.loader').removeClass('is-active');
 			var errors = JSON.parse(errors.responseText);
 			if (errors.nombre != null) {
-				$("#HabitacionForm input[name='nombre'] ").after("<label class='error' id='ErrorNombre'>"+errors.nombre+"</label>");
+				$("#PaqueteForm input[name='nombre'] ").after("<label class='error' id='ErrorNombre'>"+errors.nombre+"</label>");
 			}
 			else{
 				$("#ErrorNombre").remove();
@@ -96,16 +96,16 @@ function saveModal(button) {
 
 if(window.location.hash === '#create')
 	{
-		$('#modalHabitacion').modal('show');
+		$('#modalPaquete').modal('show');
 	}
 
-	$('#modalHabitacion').on('hide.bs.modal', function(){
+	$('#modalPaquete').on('hide.bs.modal', function(){
 		window.location.hash = '#';
 		$("label.error").remove();
-		BorrarFormularioHabitacion();
+		BorrarFormularioPaquete();
 	});
 
-	$('#modalHabitacion').on('shown.bs.modal', function(){
+	$('#modalPaquete').on('shown.bs.modal', function(){
 		window.location.hash = '#create';
 
 	}); 

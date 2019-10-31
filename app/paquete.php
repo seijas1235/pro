@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Publicidad extends Model
+class paquete extends Model
 {
     protected $table = 'paquetes';
 

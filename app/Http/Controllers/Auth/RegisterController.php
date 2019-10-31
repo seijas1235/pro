@@ -94,4 +94,10 @@ class RegisterController extends Controller
         return redirect()->route('login')
             ->with(['success' => '¡Felicidades! Su cuenta está registrada.']);
     }
+    protected function registered(Request $request, $user)
+    {
+        $user->generateToken();
+
+        return response()->json(['data' => $user->toArray()], 201);
+    }
 }

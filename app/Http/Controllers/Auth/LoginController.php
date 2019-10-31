@@ -81,7 +81,7 @@ class LoginController extends Controller
         $data = $request->all();
 
         $user = User::where('id',$data["user"])->first();
-        if($data['contador'] == 10){
+        if($data['contador'] == 3){
             $user->update(['contador' => 0 , 'active' => 0]);
 
             return Response::json(['result' => 'ok']);
@@ -113,6 +113,34 @@ class LoginController extends Controller
 		{
 			return 'false';
 		}
-	}
+    }
+    public function login2(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            $user = $this->guard()->user();
+            $user->generateToken();
+
+            return response()->json([
+                'data' => $user->toArray(),
+            ]);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    
+public function logout2(Request $request)
+{
+    $user = Auth::guard('api')->user();
+
+    if ($user) {
+        $user->api_token = null;
+        $user->save();
+    }
+
+    return response()->json(['data' => 'User logged out.'], 200);
+}
 
 }

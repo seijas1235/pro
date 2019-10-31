@@ -23,7 +23,7 @@ class CreateHabitacionesTable extends Migration
             $table->date('fecha_entrada')->nullable();
             $table->date('fecha_salida')->nullable();
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->unsignedInteger('hotel_id');

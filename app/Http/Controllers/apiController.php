@@ -16,6 +16,8 @@ use Validator;
 
 class apiController extends Controller
 {
+   
+
     public function cargarPais(){
         $paises=DB::table('pais')
         ->select('id','nombre')->get();

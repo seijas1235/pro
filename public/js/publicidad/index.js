@@ -1,8 +1,8 @@
 
 $('.loader').removeClass('is-active');
 
-var habitaciones_table = $('#habitaciones-table').DataTable({
-    "ajax": APP_URL+"/habitaciones/getJson",
+var publicidad_table = $('#publicidad-table').DataTable({
+    "ajax": APP_URL+"/publicidad/getJson",
     "responsive": true,
     "processing": true,
     "info": true,
@@ -59,8 +59,8 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
     }, 
     
     {
-        "title": "Habitación",
-        "data": "habitacion",
+        "title": "Descripción",
+        "data": "descripcion",
         "width" : "20%",
         "responsivePriority": 2,
         "render": function( data, type, full, meta ) {
@@ -68,28 +68,14 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
     },
 
     {
-        "title": "Pais",
-        "data": "pais",
-        "width" : "20%",
-        "responsivePriority": 2,
+        "title": "Fecha Creación",
+        "data": "created_at",
+        "width" : "15%",
+        "responsivePriority": 3,
         "render": function( data, type, full, meta ) {
             return (data);},
     },
-    {
-        "title": "Hotel",
-        "data": "hotel",
-        "width" : "20%",
-        "responsivePriority": 2,
-        "render": function( data, type, full, meta ) {
-            return (data);},
-    },
-    { 
-        "title": "Precio",
-        "data": "precio",
-        "responsivePriority": 5,
-        "render": function( data, type, full, meta ) {
-        return ("Q."+parseFloat(Math.round(data * 100) / 100).toFixed(2));
-    }},
+
       
     {
         "title": "Acciones",
@@ -99,11 +85,11 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
 
         return "<div id='" + full.id + "' class='text-center'>" + 
         "<div class='float-left col-lg-6'>" + 
-        "<a href='#' class='edit-habitacion' data-toggle='modal' data-target='#modalUpdateHabitacion' data-id='"+full.id+"' data-nombre_habitacion='"+full.habitacion+"' data-nivel_id='"+full.nivel_id+"' data-tipo_id='"+full.tipo_id+"' data-descripcion='"+full.descripcion+"' data-precio='"+full.precio+"' >" + 
+        "<a href='#' class='edit-Publicidad' data-toggle='modal' data-target='#modalUpdatePublicidad' data-id='"+full.id+"'  data-descripcion='"+full.descripcion+"'  >" + 
         "<i class='fa fa-btn fa-edit' title='Editar Habitación'></i>" + 
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-6'>" + 
-        "<a href='/habitaciones/"+full.id+"/delete' class='remove-Habitacion'"+ "data-method='get'"+ ">"+ 
+        "<a href='/publicidad/"+full.id+"/delete' class='remove-Publicidad'"+ "data-method='get'"+ ">"+ 
         "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
         "</a>" + "</div>";          
             
@@ -123,19 +109,19 @@ $("#btnConfirmarAccion").click(function(event) {
 	}
 });
 
-$(document).on('click', 'a.remove-Habitacion', function(e) {
+$(document).on('click', 'a.remove-Publicidad', function(e) {
     e.preventDefault(); // does not go through with the link.
 
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar habitacion', 'Esta seguro de desactivar Esta habitacion', 
+    alertify.confirm('Desactivar Publicidad', 'Esta seguro de desactivar Esta Publicidad', 
         function(){
             $.post({
                 type: $this.data('method'),
                 url: $this.attr('href')
             }).done(function (data) {
-                habitaciones_table.ajax.reload();
+                publicidad_table.ajax.reload();
                     alertify.set('notifier','position', 'top-center');
                     alertify.success('Hotel Desactivado con Éxito!!');
             }); 

@@ -18,10 +18,7 @@ Route::group([
     'middleware'=>['auth','active',] ],
     function(){ 
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/pago', 'HomeController@pago')->name('pago');
-    Route::get('/publicidad', 'HomeController@publicidad')->name('publicidad');
-    Route::get('/compra', 'HomeController@compra')->name('compra');
-
+    
     Route::get('user/getJson' , 'UsersController@getJson' )->name('users.getJson');
     Route::get('users' , 'UsersController@index' )->name('users.index');
     Route::post('users' , 'UsersController@store' )->name('users.store');
@@ -61,10 +58,27 @@ Route::group([
     Route::get( '/habitaciones/getJson/' , 'HabitacionesController@getJson')->name('habitaciones.getJson');
     Route::put( '/habitaciones/{habitacion}/update' , 'HabitacionesController@update')->name('habitaciones.update');
     Route::post( '/habitaciones/save' , 'HabitacionesController@store')->name('habitaciones.save');
-    Route::post('/habitaciones/{habitacion}/delete' , 'HabitacionesController@destroy');
+    Route::get('/habitaciones/{habitacion}/delete' , 'HabitacionesController@destroy');
     Route::get( '/hoteles/cargar' , 'HabitacionesController@cargarSelect')->name('hotel.cargar');
 
+    //rutas para publicidad
+    Route::get( '/publicidad' , 'PublicidadController@index')->name('publicidad.index');
+    Route::get( '/publicidad/getJson/' , 'PublicidadController@getJson')->name('publicidad.getJson');
+    Route::put( '/publicidad/{publicidad}/update' , 'PublicidadController@update')->name('publicidad.update');
+    Route::post( '/publicidad/save' , 'PublicidadController@store')->name('publicidad.save');
+    Route::get('/publicidad/{publicidad}/delete' , 'PublicidadController@destroy');
+    Route::get( '/hoteles/cargar' , 'PublicidadController@cargarSelect')->name('hotelp.cargar');
+    Route::get( '/aerolinea/cargar' , 'PublicidadController@cargarAerolinea')->name('aerolineap.cargar');
 
+
+    //rutas para Paquetes
+    Route::get( '/paquetes' , 'Paquetescontroller@index')->name('paquetes.index');
+    Route::get( '/paquetes/getJson/' , 'Paquetescontroller@getJson')->name('paquetes.getJson');
+    Route::put( '/paquetes/{paquete}/update' , 'Paquetescontroller@update')->name('paquetes.update');
+    Route::post( '/paquetes/save' , 'Paquetescontroller@store')->name('paquetes.save');
+    Route::get('/paquetes/{paquete}/delete' , 'Paquetescontroller@destroy');
+    Route::get( '/hoteles/cargar' , 'Paquetescontroller@cargarSelect')->name('hotelp.cargar');
+    Route::get( '/aerolinea/cargar' , 'Paquetescontroller@cargarAerolinea')->name('aerolineap.cargar');
 });
 
 Auth::routes();
@@ -82,6 +96,10 @@ Route::get('/user-existe/', 'Auth\LoginController@userExiste')->name('user.exist
 
 Route::group(['middleware' => 'cors', 'prefix' => 'api'], function()
 {
+    Route::post('/register', 'Auth\RegisterController@register');
+    Route::post('/login', 'Auth\LoginController@login2');
+    Route::post('/logout', 'Auth\LoginController@logout');
+
     Route::get('/getuser','UsersController@api');
     Route::get('/getpais' , 'apiController@cargarPais');
     Route::get('/getpublicidad' , 'apiController@cargarPublicidad');

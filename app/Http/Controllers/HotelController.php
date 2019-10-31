@@ -51,8 +51,9 @@ class HotelController extends Controller
      */
     public function update(hotel $hotel, Request $request)
     {
-        
+        $image=$hotel->imagen;
         $hotel->nombre= $request->nombre;
+        $hotel->imagen= $image;
         $hotel->pais_id = $request->pais_id;
         $hotel->descripcion= $request->descripcion;
         
@@ -72,10 +73,8 @@ class HotelController extends Controller
     public function destroy(hotel $hotel, Request $request)
     {
        
-        
-            $hotel->estado = 0;
-            $hotel->save();
-           return Response::json(['success' => 'Éxito']);
+        $hotel->delete();
+        return Response::json(['success' => 'Éxito']);
         
     }
     

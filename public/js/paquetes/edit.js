@@ -1,74 +1,70 @@
-var validator = $("#HabitacionUpdateForm").validate({
+var validator = $("#PaqueteUpdateForm").validate({
 	ignore: [],
 	onkeyup:false,
     onclick: false,
 	//onfocusout: true,
 	rules: {
-		nombre_habitacion:{
+		aerolinea_id:{
 			required: true,
 		},
 		hotel_id:{
 			required:true
 		},
 		
-		precio:{
+		precio_paquete:{
 			required:true
 		},
 		descripcion:{
 			required:true
 		},
-		file:{
-			required:true
-		}
+
 
 	},
 	messages: {
-		nombre_habitacion: {
-			required: "Por favor, ingrese nombre/número de habitación "
+		aerolinea_id: {
+			required: "Por favor, seleccione una aerolinea "
 		},
 		hotel_id:{
 			required:"Por favor, seleccione un hotel"
 		},
 		
-		precio:{
+		precio_paquete:{
 			required:"Por favor, ingrese el precio"
 		},
 		descripcion:{
 			required:"Por favor, una descripción"
 		},
-		file:{
-			required:'debe seleccionar una imagen de habitación'
-		}
 	}
 });
 
-$('#modalUpdateHabitacion').on('shown.bs.modal', function(event){
+$('#modalUpdatePaquete').on('shown.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	var id = button.data('id');
-	var nombre_habitacion = button.data('nombre_habitacion');
+	var precio_paquete = button.data('precio_paquete');
 	var hotel_id = button.data('hotel_id');
 	var descripcion = button.data('descripcion');
-	var precio = button.data('precio');
+	var aerolinea_id = button.data('aerolinea_id');
 	
 	var modal = $(this);
 	modal.find(".modal-body input[name='id']").val(id);
-	modal.find(".modal-body input[name='nombre_habitacion']").val(nombre_habitacion);
+	modal.find(".modal-body input[name='precio_paquete']").val(precio_paquete);
 	modal.find(".modal-body input[name='hotel_id']").val(hotel_id);
 	modal.find(".modal-body input[name='descripcion']").val(descripcion);
-	modal.find(".modal-body input[name='precio']").val(precio);
+	modal.find(".modal-body input[name='aerolinea_id']").val(aerolinea_id);
 
 	cargarSelectHoteles(hotel_id);
+	cargarSelectAerolinea(aerolinea_id);
  }); 
 
 function BorrarFormularioUpdate() {
-    $("#HabitacionUpdateForm :input").each(function () {
+    $("#PaqueteUpdateForm :input").each(function () {
         $(this).val('');
 	});
 };
 
-$("#ButtonHabitacionModalUpdate").click(function(event) {
+$("#ButtonPaqueteModalUpdate").click(function(event) {
 	event.preventDefault();
-	if ($('#HabitacionUpdateForm').valid()) {
+	if ($('#PaqueteUpdateForm').valid()) {
 		
 		updateModal();
 	} else {
@@ -78,28 +74,28 @@ $("#ButtonHabitacionModalUpdate").click(function(event) {
 
 function updateModal(button) {
 	$('.loader').addClass('is-active');
-	var formData = $("#HabitacionUpdateForm").serialize();
+	var formData = $("#PaqueteUpdateForm").serialize();
 	var id = $("input[name='id']").val();
 	var urlActual = $("input[name='urlActual']").val();
 	$.ajax({
 		type: "PUT",
-		headers: {'X-CSRF-TOKEN': $('#tokenHabitacionEdit').val()},
+		headers: {'X-CSRF-TOKEN': $('#tokenPaqueteEdit').val()},
 		url: urlActual+"/"+id +"/update",
 		data: formData,
 		dataType: "json",
 		success: function(data) {
 			$('.loader').removeClass('is-active');
 			BorrarFormularioUpdate();
-			$('#modalUpdateHabitacion').modal("hide");
-			habitaciones_table.ajax.reload();
+			$('#modalUpdatePaquete').modal("hide");
+			Paquetes_table.ajax.reload();
 			alertify.set('notifier','position', 'top-center');
-			alertify.success('Habitacion Editado con Éxito!!');
+			alertify.success('Paquete Editado con Éxito!!');
 		},
 		error: function(errors) {
 			$('.loader').removeClass('is-active');
 			var errors = JSON.parse(errors.responseText);
 			if (errors.email != null) {
-				$("#HabitacionUpdateForm input[name='email'] ").after("<label class='error' id='ErrorNombreedit'>"+errors.email+"</label>");
+				$("#PaqueteUpdateForm input[name='email'] ").after("<label class='error' id='ErrorNombreedit'>"+errors.email+"</label>");
 			}
 			else{
 				$("#ErrorNombreedit").remove();
@@ -111,16 +107,16 @@ function updateModal(button) {
 
 if(window.location.hash === '#edit')
        {
-         $('#modalUpdateHabitacion').modal('show');
+         $('#modalUpdatePaquete').modal('show');
        }
     
-       $('#modalUpdateHabitacion').on('hide.bs.modal', function(){
+       $('#modalUpdatePaquete').on('hide.bs.modal', function(){
           window.location.hash = '#';
 		  $("label.error").remove();
 		  BorrarFormularioUpdate();
        });
     
-       $('#modalUpdateHabitacion').on('shown.bs.modal', function(){
+       $('#modalUpdatePaquete').on('shown.bs.modal', function(){
           window.location.hash = '#edit';
     
 	   }); 

@@ -1,8 +1,8 @@
 
 $('.loader').removeClass('is-active');
 
-var habitaciones_table = $('#habitaciones-table').DataTable({
-    "ajax": APP_URL+"/habitaciones/getJson",
+var paquetes_table = $('#paquetes-table').DataTable({
+    "ajax": APP_URL+"/paquetes/getJson",
     "responsive": true,
     "processing": true,
     "info": true,
@@ -57,10 +57,17 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
         "render": function( data, type, full, meta ) {
             return (data);},
     }, 
-    
     {
-        "title": "Habitación",
-        "data": "habitacion",
+        "title": "Titulo",
+        "data": "descripcion",
+        "width" : "20%",
+        "responsivePriority": 2,
+        "render": function( data, type, full, meta ) {
+            return (data);},
+    },
+    {
+        "title": "aerolinea",
+        "data": "aerolinea",
         "width" : "20%",
         "responsivePriority": 2,
         "render": function( data, type, full, meta ) {
@@ -99,12 +106,12 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
 
         return "<div id='" + full.id + "' class='text-center'>" + 
         "<div class='float-left col-lg-6'>" + 
-        "<a href='#' class='edit-habitacion' data-toggle='modal' data-target='#modalUpdateHabitacion' data-id='"+full.id+"' data-nombre_habitacion='"+full.habitacion+"' data-nivel_id='"+full.nivel_id+"' data-tipo_id='"+full.tipo_id+"' data-descripcion='"+full.descripcion+"' data-precio='"+full.precio+"' >" + 
-        "<i class='fa fa-btn fa-edit' title='Editar Habitación'></i>" + 
+        "<a href='#' class='edit-Paquete' data-toggle='modal' data-target='#modalUpdatePaquete' data-id='"+full.id+"' data-precio_paquete='"+full.precio+"' data-hotel_id='"+full.hotel_id+"' data-aerolinea_id='"+full.aerolinea_id+"' data-descripcion='"+full.descripcion+"'  >" + 
+        "<i class='fa fa-btn fa-edit' title='Editar Paquete'></i>" + 
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-6'>" + 
-        "<a href='/habitaciones/"+full.id+"/delete' class='remove-Habitacion'"+ "data-method='get'"+ ">"+ 
-        "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
+        "<a href='/paquetes/"+full.id+"/delete' class='remove-Paquete'"+ "data-method='get'"+ ">"+ 
+        "<i class='fa fa-thumbs-down' title='Desactivar Paquete'></i>" + 
         "</a>" + "</div>";          
             
         },
@@ -123,21 +130,21 @@ $("#btnConfirmarAccion").click(function(event) {
 	}
 });
 
-$(document).on('click', 'a.remove-Habitacion', function(e) {
+$(document).on('click', 'a.remove-Paquete', function(e) {
     e.preventDefault(); // does not go through with the link.
 
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar habitacion', 'Esta seguro de desactivar Esta habitacion', 
+    alertify.confirm('Desactivar Paquete', 'Esta seguro de desactivar Esta Paquete', 
         function(){
             $.post({
                 type: $this.data('method'),
                 url: $this.attr('href')
             }).done(function (data) {
-                habitaciones_table.ajax.reload();
+                paquetes_table.ajax.reload();
                     alertify.set('notifier','position', 'top-center');
-                    alertify.success('Hotel Desactivado con Éxito!!');
+                    alertify.success('Paquete Desactivado con Éxito!!');
             }); 
          }
         , function(){
