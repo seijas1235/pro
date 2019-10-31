@@ -62,7 +62,7 @@ function cargarSelectHoteles(s_hotel_id){
       var hotel_id = s_hotel_id;
       $.ajax({
         type: "GET",
-        url: "/hotelesh/cargar", 
+        url: "{{route('hotelh.cargar')}}", 
         dataType: "json",
         success: function(data){
           $.each(data,function(key, registro) {

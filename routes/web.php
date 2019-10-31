@@ -51,7 +51,7 @@ Route::group([
     Route::post('/aerolineas/save' , 'AerolineaController@store')->name('aerolinea.save');
     Route::get('/aerolineas/{aerolinea}/delete' , 'AerolineaController@destroy');
     Route::put('/aerolineas/{aerolinea}/update' , 'AerolineaController@update')->name('aerolinea.update');
-    Route::get('/pais/cargar' , 'AerolineaController@cargarSelect')->name('pais.cargar');
+    Route::get('/paisa/cargar' , 'AerolineaController@cargarSelect')->name('pais.cargar');
 
     //rutas para habitaciones
     Route::get( '/habitaciones' , 'HabitacionesController@index')->name('habitaciones.index');
