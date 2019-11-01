@@ -69,11 +69,11 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'baseproyecto.database.windows.net'),
             'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'baseproyecto'),
+            'username' => env('DB_USERNAME', 'proyecto'),
+            'password' => env('DB_PASSWORD', 'Base2019'),
             'charset' => 'utf8',
             'prefix' => '',
         ],
