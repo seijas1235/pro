@@ -19,7 +19,7 @@ class CreateVuelosTable extends Migration
             $table->integer('acientos');
             $table->integer('ocupado')->nullable()->default(0);
             $table->unsignedInteger('pais1_id');
-            $table->foreign('pais1_id')->references('id')->on('pais')->onDelete('cascade');
+            $table->foreign('pais1_id')->references('id')->on('pais');
             
             $table->unsignedInteger('pais2_id');
             $table->foreign('pais2_id')->references('id')->on('pais')->onDelete('cascade');
