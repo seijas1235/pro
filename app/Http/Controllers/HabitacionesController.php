@@ -95,7 +95,7 @@ class HabitacionesController extends Controller
     public function getJson(Request $params)
     {
 
-        $query = 'SELECT H.id as id,H.nombre_habitacion as habitacion, H.precio as precio, ho.nombre as hotel, H.descripcion as descripcion,p.nombre as pais
+        $query = 'SELECT H.imagen as imagen,H.id as id,H.nombre_habitacion as habitacion, H.precio as precio, ho.nombre as hotel, H.descripcion as descripcion,p.nombre as pais
         FROM habitaciones H      
         INNER JOIN hotel ho on H.hotel_id = ho.id
         INNER JOIN pais p on ho.pais_id=p.id';

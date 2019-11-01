@@ -98,14 +98,18 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
         "render": function(data, type, full, meta) {
 
         return "<div id='" + full.id + "' class='text-center'>" + 
-        "<div class='float-left col-lg-6'>" + 
+        "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='edit-habitacion' data-toggle='modal' data-target='#modalUpdateHabitacion' data-id='"+full.id+"' data-nombre_habitacion='"+full.habitacion+"' data-nivel_id='"+full.nivel_id+"' data-tipo_id='"+full.tipo_id+"' data-descripcion='"+full.descripcion+"' data-precio='"+full.precio+"' >" + 
         "<i class='fa fa-btn fa-edit' title='Editar Habitación'></i>" + 
         "</a>" + "</div>" + 
-        "<div class='float-right col-lg-6'>" + 
+        "<div class='float-right col-lg-4'>" + 
         "<a href='/habitaciones/"+full.id+"/delete' class='remove-Habitacion'"+ "data-method='get'"+ ">"+ 
         "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
-        "</a>" + "</div>";          
+        "</a>" + "</div>"+ 
+        "<div class='float-left col-lg-4'>" + 
+        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
+        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
+        "</a>" + "</div>" ;          
             
         },
         "responsivePriority": 5
@@ -137,7 +141,7 @@ $(document).on('click', 'a.remove-Habitacion', function(e) {
             }).done(function (data) {
                 habitaciones_table.ajax.reload();
                     alertify.set('notifier','position', 'top-center');
-                    alertify.success('Hotel Desactivado con Éxito!!');
+                    alertify.success('Habitacion Desactivada con Éxito!!');
             }); 
          }
         , function(){

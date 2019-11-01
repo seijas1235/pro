@@ -3,6 +3,7 @@
 @section('content')
 @include('admin.hoteles.createModal')
 @include('admin.hoteles.editModal')
+@include('admin.FotoModal') 
 
 <h3 class="box-title">Listado de hoteles</h3>
       <input type="hidden" name="rol_user" value="{{auth()->user()->roles[0]->name}}">

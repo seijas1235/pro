@@ -2,7 +2,8 @@
 @section('content')
 
 @include('admin.paquetes.createModal')
-@include('admin.paquetes.editModal') 
+@include('admin.paquetes.editModal')
+@include('admin.FotoModal') 
 <div class="loader loader-double is-active"></div>
 <input type="hidden" name="rol_user" value="{{auth()->user()->roles[0]->name}}">
 

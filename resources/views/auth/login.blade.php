@@ -1,8 +1,14 @@
 @extends('layout')
 <link rel="stylesheet" href="{{asset('css/login.css') }}">
+<style>
+.login-page{
+    background: url('/images/login.jpeg') no-repeat center top;
+
+}
+</style>
 
 @section('contenido')
-<div class="login-page" style="background-color: rgb(23, 109, 123);">
+<div class="login-page">
     <div class="form">
         <form class="login-form" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" id="LoginForm">
             @csrf

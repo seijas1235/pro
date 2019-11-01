@@ -105,13 +105,17 @@ var paquetes_table = $('#paquetes-table').DataTable({
         "render": function(data, type, full, meta) {
 
         return "<div id='" + full.id + "' class='text-center'>" + 
-        "<div class='float-left col-lg-6'>" + 
+        "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='edit-Paquete' data-toggle='modal' data-target='#modalUpdatePaquete' data-id='"+full.id+"' data-precio_paquete='"+full.precio+"' data-hotel_id='"+full.hotel_id+"' data-aerolinea_id='"+full.aerolinea_id+"' data-descripcion='"+full.descripcion+"'  >" + 
         "<i class='fa fa-btn fa-edit' title='Editar Paquete'></i>" + 
         "</a>" + "</div>" + 
-        "<div class='float-right col-lg-6'>" + 
+        "<div class='float-right col-lg-4'>" + 
         "<a href='/paquetes/"+full.id+"/delete' class='remove-Paquete'"+ "data-method='get'"+ ">"+ 
         "<i class='fa fa-thumbs-down' title='Desactivar Paquete'></i>" + 
+        "</a>" + "</div>"  + 
+        "<div class='float-left col-lg-4'>" + 
+        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
+        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
         "</a>" + "</div>";          
             
         },

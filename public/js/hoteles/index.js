@@ -90,13 +90,17 @@ var hoteles_table = $('#hoteles-table').DataTable({
         "render": function(data, type, full, meta) {
 
         return "<div id='" + full.id + "' class='text-center'>" + 
-        "<div class='float-left col-lg-6'>" + 
+        "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='edit-Hotel' data-toggle='modal' data-target='#modalUpdateHotel' data-id='"+full.id+"' data-pais_id='"+full.pais_id+"' data-nombre='"+full.nombre+"' data-descripcion='"+full.descripcion+"' >" + 
         "<i class='fa fa-btn fa-edit' title='Editar Hotel'></i>" + 
         "</a>" + "</div>" + 
-        "<div class='float-right col-lg-6'>" + 
+        "<div class='float-right col-lg-4'>" + 
         "<a href='/hoteles/"+full.id+"/delete' class='remove-Hotel'"+ "data-method='get'"+ ">" + 
         "<i class='fa fa-thumbs-down' title='Desactivar Hotel'></i>" + 
+        "</a>" + "</div>" + 
+        "<div class='float-left col-lg-4'>" + 
+        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
+        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
         "</a>" + "</div>";          
             
         },

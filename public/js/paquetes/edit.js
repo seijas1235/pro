@@ -87,7 +87,7 @@ function updateModal(button) {
 			$('.loader').removeClass('is-active');
 			BorrarFormularioUpdate();
 			$('#modalUpdatePaquete').modal("hide");
-			Paquetes_table.ajax.reload();
+			paquetes_table.ajax.reload();
 			alertify.set('notifier','position', 'top-center');
 			alertify.success('Paquete Editado con Éxito!!');
 		},

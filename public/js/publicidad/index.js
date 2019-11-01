@@ -84,13 +84,17 @@ var publicidad_table = $('#publicidad-table').DataTable({
         "render": function(data, type, full, meta) {
 
         return "<div id='" + full.id + "' class='text-center'>" + 
-        "<div class='float-left col-lg-6'>" + 
+        "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='edit-Publicidad' data-toggle='modal' data-target='#modalUpdatePublicidad' data-id='"+full.id+"'  data-descripcion='"+full.descripcion+"'  >" + 
         "<i class='fa fa-btn fa-edit' title='Editar Habitación'></i>" + 
         "</a>" + "</div>" + 
-        "<div class='float-right col-lg-6'>" + 
+        "<div class='float-right col-lg-4'>" + 
         "<a href='/publicidad/"+full.id+"/delete' class='remove-Publicidad'"+ "data-method='get'"+ ">"+ 
         "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
+        "</a>" + "</div>" + 
+        "<div class='float-left col-lg-4'>" + 
+        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
+        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
         "</a>" + "</div>";          
             
         },

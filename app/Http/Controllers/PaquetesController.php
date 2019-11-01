@@ -50,8 +50,8 @@ class PaquetesController extends Controller
         $data = $request->all();
         if ($archivo=$request->file('file')) {
             $image=$archivo->getClientOriginalName();
-            $archivo->move('images/publicidad',$image);
-            $data['imagen']='/images/publicidad/'.$image;
+            $archivo->move('images/paquetes',$image);
+            $data['imagen']='/images/paquetes/'.$image;
          } 
   
        paquete::create($data);                  
@@ -98,7 +98,7 @@ class PaquetesController extends Controller
     public function getJson(Request $params)
     {
 
-        $query = 'SELECT p.id as id,p.descripcion as descripcion,p.hotel_id as hotel_id,p.aerolinea_id as aerolinea_id, h.nombre as hotel,a.nombre as aerolinea, p.precio_paquete  as precio,pa.nombre as pais from paquetes p
+        $query = 'SELECT p.imagen as imagen,  p.id as id,p.descripcion as descripcion,p.hotel_id as hotel_id,p.aerolinea_id as aerolinea_id, h.nombre as hotel,a.nombre as aerolinea, p.precio_paquete  as precio,pa.nombre as pais from paquetes p
         INNER JOIN hotel h on p.hotel_id=h.id
         INNER JOIN aerolinea a on p.aerolinea_id=a.id
         INNER JOIN pais pa on h.pais_id=pa.id';
