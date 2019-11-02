@@ -25,44 +25,34 @@
     <link rel="stylesheet" href="{{asset('css/alertify.css') }}">
 </head>
 <body>
-        <nav class="navbar navbar-default">
-                <div class="container">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Administrador</a>
-                  </div>
-                  <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                      <li class="{{request()->is('home*')? 'active': ''}}"><a href="/home">Panel de Control</a></li>
-                      <li class="{{request()->is('publicidad*')? 'active': ''}}"><a href="/publicidad">Publicidad</a></li>
-                      <li class="{{request()->is('hoteles*')? 'active': ''}}"><a href="/hoteles">hoteles</a></li>
-                      <li class="{{request()->is('habitaciones*')? 'active': ''}}"><a href="/habitaciones">Habitaciones</a></li>
-                      <li class="{{request()->is('paquetes*')? 'active': ''}}"><a href="/paquetes">Paquetes</a></li>
-                      <li class="{{request()->is('aerolineas*')? 'active': ''}}"><a href="/aerolineas">aerolineas</a></li>
-                      <li class="{{request()->is('vuelos*')? 'active': ''}}"><a href="/vuelos">vuelos</a></li>
-                      <li class="{{request()->is('users*')? 'active': ''}}"><a href="/users">Usuarios</a></li>
-                      
-                      <li><a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}<i class="fas fa-sign-out pull-right"></i>
+    <nav class=" navbar-dark bg-primary">
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               <li class="{{request()->is('publicidad*')? 'active': ''}}"><a href="/publicidad">Publicidad</a></li>
+               <li class="{{request()->is('paquetes*')? 'active': ''}}"><a href="/paquetes">Paquetes</a></li>
+              <li class="{{request()->is('hoteles*')? 'active': ''}}"><a href="/hoteles">hoteles</a></li>
+              <li class="{{request()->is('vuelos*')? 'active': ''}}"><a href="/vuelos">vuelos</a></li>
+              <li class="{{request()->is('habitaciones*')? 'active': ''}}"><a href="/habitaciones">Habitaciones</a></li>
+             
+              <li class="{{request()->is('aerolineas*')? 'active': ''}}"><a href="/aerolineas">aerolineas</a></li>
+              
+              <li class="{{request()->is('users*')? 'active': ''}}"><a href="/users">Usuarios</a></li>
+              
+              <li><a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}<i class="fas fa-sign-out pull-right"></i>
 
-                        </a>
-                        
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                            </form>
-                          
-                        </li>
-                    </ul>
-                  </div><!--/.nav-collapse -->
-                </div>
-              </nav>
+                </a>
+                
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                    </form>
+                  
+                </li>
+            </ul>
+          </div>
+      </nav>
 
         <div class="right_col" role="main">
                 @yield('content')

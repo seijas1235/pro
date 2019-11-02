@@ -1,10 +1,7 @@
 @extends('layout')
 <link rel="stylesheet" href="{{asset('css/login.css') }}">
 <style>
-.login-page{
-    background: url('/images/login.jpeg') no-repeat center top;
 
-}
 </style>
 
 @section('contenido')
@@ -44,13 +41,7 @@
                     @endif
             </div>
 
-            <div class="form-group">
-                <div class="col-md-9 offset-md-5">
-                    <label for="remember">{{ __('Recuerdame') }}</label>
-                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="position:absolute; left:-60px; top:8px">                        
- 
-                </div>
-            </div>
+       
 
             <button type="submit" class="btn-login" id="btnLogin">
                 {{ __('Login') }}
@@ -59,15 +50,10 @@
             <input type="hidden" name="contador">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
-            <div class="loader loader-double is-active"></div>
+
 
           </form>
 
-            <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                    <button id="btnRecuperar" class="btn-login2 tip-top btn-title" title="Puede utilizar su correo o nombre de usuario">Recuperar Contraseña</button>
-                </div>
-            </div>
     </div>
 </div>
 @endsection

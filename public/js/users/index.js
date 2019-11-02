@@ -122,12 +122,8 @@ var users_table = $('#users-table').DataTable({
                 "</a>" + "</div>" + 
                 "<div class='float-right col-lg-4'>" + 
                 "<a href='"+urlActual+"/delete/"+full.id+"' class='remove-user'"+ "data-method='get'"+ ">" + 
-                "<i class='fa fa-thumbs-down' title='Desactivar Usuario'></i>" + 
-                "</a>" + "</div>"+
-                "<div class='float-left col-lg-4'>" + 
-                "<a href='#' class='reset-password'>" + 
-                "<i class='fa fa-btn fa-lock-open' title='Resetear Password' data-toggle='modal' data-target='#modalResetPasswordTercero' data-id='"+full.id+"'></i>" + 
-                "</a>" + "</div>" ;                
+                "<i class='fa fa-trash-alt' title='eliminar Usuario'></i>" + 
+                "</a>" + "</div>";                
             }
             else if(rol_user == 'super-admin' && data == 'Inactivo' || rol_user == 'Administrador' && data == 'Inactivo'){
                 return "<div id='" + full.id + "' class='text-center'>" + 
@@ -163,7 +159,7 @@ $(document).on('click', 'a.remove-user', function(e) {
     var $this = $(this);
     var confirmacion =0;
     
-    alertify.confirm('Desactivar Usuario', 'Esta seguro de desactivar el usuario', 
+    alertify.confirm('eliminar Usuario', 'Esta seguro de eliminar el usuario', 
         function(){
             $.post({
                 type: $this.data('method'),

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('/publicidad');
 });
 Route::group([
     'middleware'=>['auth','active',] ],
@@ -99,8 +99,10 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api'], function()
     Route::post('/register', 'Auth\RegisterController@register');
     Route::post('/login', 'Auth\LoginController@login2');
     Route::post('/logout', 'Auth\LoginController@logout');
-
     Route::get('/getuser','UsersController@api');
+    
+    Route::get('/getreserva/{user_id}','apiController@reserva');
+    
     Route::get('/getpais' , 'apiController@cargarPais');
     Route::get('/getpublicidad' , 'apiController@cargarPublicidad');
     Route::get('/getpaquetes' , 'apiController@cargarPaquetes');

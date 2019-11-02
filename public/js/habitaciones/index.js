@@ -49,17 +49,9 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
     },
     "order": [0, 'desc'],
 
-    "columns": [ {
-        "title": "No.",
-        "data": "id",
-        "width" : "15%",
-        "responsivePriority": 1,
-        "render": function( data, type, full, meta ) {
-            return (data);},
-    }, 
-    
+    "columns": [     
     {
-        "title": "Habitación",
+        "title": "Habitación nombre",
         "data": "habitacion",
         "width" : "20%",
         "responsivePriority": 2,
@@ -68,7 +60,7 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
     },
 
     {
-        "title": "Pais",
+        "title": "ubicación",
         "data": "pais",
         "width" : "20%",
         "responsivePriority": 2,
@@ -76,7 +68,7 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
             return (data);},
     },
     {
-        "title": "Hotel",
+        "title": "nombre Hotel",
         "data": "hotel",
         "width" : "20%",
         "responsivePriority": 2,
@@ -104,11 +96,7 @@ var habitaciones_table = $('#habitaciones-table').DataTable({
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-4'>" + 
         "<a href='/habitaciones/"+full.id+"/delete' class='remove-Habitacion'"+ "data-method='get'"+ ">"+ 
-        "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
-        "</a>" + "</div>"+ 
-        "<div class='float-left col-lg-4'>" + 
-        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
-        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
+        "<i class='fa fa-trash-alt' title='eliminar Habitación'></i>" + 
         "</a>" + "</div>" ;          
             
         },
@@ -133,7 +121,7 @@ $(document).on('click', 'a.remove-Habitacion', function(e) {
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar habitacion', 'Esta seguro de desactivar Esta habitacion', 
+    alertify.confirm('eliminar habitacion', 'Esta seguro de eliminar Esta habitacion', 
         function(){
             $.post({
                 type: $this.data('method'),

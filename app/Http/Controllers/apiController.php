@@ -62,6 +62,7 @@ class apiController extends Controller
                 
                 $data['aciento_numero']=$numero+$i;
                 $data['vuelo_id']=$request->vuelo_id;
+                $data['user_id']=$request->user_id;
                 $data['numero']=$vuelo->no_vuelo.'-'.$data['aciento_numero'];
                 Boletos::create($data);
 
@@ -95,7 +96,11 @@ class apiController extends Controller
     }
 
     public function reservar_hotel(Request $request){
-
+        
+        $habitacion=Habitacion::find($request->hotel);
+        $habitacion->fecha_entrada=$request->entrada;
+        $habitacion->fecha_salida=$request->salida;
+        $habitacion->user_id=$request->user_id;
         return Response::json(['success' => 'Éxito']);
     }
     
@@ -125,5 +130,18 @@ class apiController extends Controller
     }
     public function comprarpaquete($request){
         return Response::json($request);
+    }
+    public function reserva($user_id){
+
+            $reservas="SELECT b.numero as numero, b.aciento_numero as aciento,p1.nombre as origen, p2.nombre as destino,v.fecha_salida as fechas FROM boletos b
+            inner join vuelos v on b.vuelo_id=v.id
+            inner join pais p1 on v.pais1_id=p1.id
+            inner join pais p2 on v.pais2_id=p2.id
+            WHERE b.user_id=".$user_id;
+            $result=DB::select($reservas);
+  
+         $api_Result['data'] = $result;
+
+        return Response::json( $api_Result );
     }
 }

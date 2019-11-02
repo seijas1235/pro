@@ -25,10 +25,7 @@
                   </div>
                   <br>
                     <div class="row">
-                  <div class="col-sm-12">
-                      {!! Form::label("descripcion","descripcion:") !!}
-                      {!! Form::text( "descripcion" , null , ['class' => 'form-control' , 'placeholder' => 'descripcion']) !!}
-                    </div> 
+ 
                   </div>
 
                   <br>

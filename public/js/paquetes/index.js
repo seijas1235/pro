@@ -111,7 +111,7 @@ var paquetes_table = $('#paquetes-table').DataTable({
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-4'>" + 
         "<a href='/paquetes/"+full.id+"/delete' class='remove-Paquete'"+ "data-method='get'"+ ">"+ 
-        "<i class='fa fa-thumbs-down' title='Desactivar Paquete'></i>" + 
+        "<i class='fa fa-trash-alt' title='eliminar Paquete'></i>" + 
         "</a>" + "</div>"  + 
         "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
@@ -140,7 +140,7 @@ $(document).on('click', 'a.remove-Paquete', function(e) {
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar Paquete', 'Esta seguro de desactivar Esta Paquete', 
+    alertify.confirm('eliminar Paquete', 'Esta seguro de eliminar Esta Paquete', 
         function(){
             $.post({
                 type: $this.data('method'),

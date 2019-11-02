@@ -86,7 +86,7 @@ var aerolineas_table = $('#aerolineas-table').DataTable({
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-6'>" + 
         "<a href='/aerolineas/"+full.id+"/delete' class='remove-Aerolinea'"+ "data-method='get'"+ ">" + 
-        "<i class='fa fa-thumbs-down' title='Desactivar Aerolinea'></i>" + 
+        "<i class='fa fa-trash-alt' title='eliminar Aerolinea'></i>" + 
         "</a>" + "</div>";          
             
         },
@@ -101,7 +101,7 @@ $(document).on('click', 'a.remove-Aerolinea', function(e) {
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar Aerolinea', 'Esta seguro de desactivar Esta Aerolinea', 
+    alertify.confirm('eliminar Aerolinea', 'Esta seguro de eliminar Esta Aerolinea', 
         function(){
             $.post({
                 type: $this.data('method'),

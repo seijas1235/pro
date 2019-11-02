@@ -15,8 +15,8 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_vuelo');
-            $table->integer('acientos');
+            $table->string('no_vuelo') ->nullable();;
+            $table->integer('acientos') ->nullable();;
             $table->integer('ocupado')->nullable()->default(0);
             $table->unsignedInteger('pais1_id');
             $table->foreign('pais1_id')->references('id')->on('pais');

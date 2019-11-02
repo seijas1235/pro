@@ -90,7 +90,7 @@ var publicidad_table = $('#publicidad-table').DataTable({
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-4'>" + 
         "<a href='/publicidad/"+full.id+"/delete' class='remove-Publicidad'"+ "data-method='get'"+ ">"+ 
-        "<i class='fa fa-thumbs-down' title='Desactivar Habitación'></i>" + 
+        "<i class='fa fa-trash-alt' title='eliminar Habitación'></i>" + 
         "</a>" + "</div>" + 
         "<div class='float-left col-lg-4'>" + 
         "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
@@ -119,7 +119,7 @@ $(document).on('click', 'a.remove-Publicidad', function(e) {
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar Publicidad', 'Esta seguro de desactivar Esta Publicidad', 
+    alertify.confirm('eliminar Publicidad', 'Esta seguro de eliminar Esta Publicidad', 
         function(){
             $.post({
                 type: $this.data('method'),

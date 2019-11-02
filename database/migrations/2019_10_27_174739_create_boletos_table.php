@@ -16,8 +16,8 @@ class CreateBoletosTable extends Migration
         Schema::create('boletos', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->string('numero');
-            $table->string('aciento_numero');
+            $table->string('numero') ->nullable();
+            $table->string('aciento_numero') ->nullable();
             $table->unsignedInteger('vuelo_id');
             $table->foreign('vuelo_id')->references('id')->on('vuelos')->onDelete('cascade');
 

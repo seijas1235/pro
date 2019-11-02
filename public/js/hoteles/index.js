@@ -49,16 +49,9 @@ var hoteles_table = $('#hoteles-table').DataTable({
     },
     "order": [0, 'asc'],
 
-    "columns": [ {
-        "title": "No.",
-        "data": "id",
-        "width" : "15%",
-        "responsivePriority": 1,
-        "render": function( data, type, full, meta ) {
-            return (data);},
-    }, 
+    "columns": [ 
     {
-        "title": "Nombre",
+        "title": "Nombre hotel",
         "data": "nombre",
         "width" : "20%",
         "responsivePriority": 2,
@@ -75,13 +68,6 @@ var hoteles_table = $('#hoteles-table').DataTable({
             return (data);},
     },
     
-    { 
-        "title": "Descripción",
-        "data": "descripcion",
-        "responsivePriority": 5,
-        "render": function( data, type, full, meta ) {
-            return (data);},
-    },
   
     {
         "title": "Acciones",
@@ -96,11 +82,7 @@ var hoteles_table = $('#hoteles-table').DataTable({
         "</a>" + "</div>" + 
         "<div class='float-right col-lg-4'>" + 
         "<a href='/hoteles/"+full.id+"/delete' class='remove-Hotel'"+ "data-method='get'"+ ">" + 
-        "<i class='fa fa-thumbs-down' title='Desactivar Hotel'></i>" + 
-        "</a>" + "</div>" + 
-        "<div class='float-left col-lg-4'>" + 
-        "<a href='#' class='mostar-image' data-toggle='modal' data-target='#ModalImagen' data-imagen='"+full.imagen+"'>" + 
-        "<i class='fa fa-images' title='Mostrar imagen'></i>" + 
+        "<i class='fa fa-trash-alt' title='eliminar Hotel'></i>" + 
         "</a>" + "</div>";          
             
         },
@@ -115,7 +97,7 @@ $(document).on('click', 'a.remove-Hotel', function(e) {
     var $this = $(this);
     var confirmacion =0;
     console.log($this);
-    alertify.confirm('Desactivar Hotel', 'Esta seguro de desactivar Esta Hotel', 
+    alertify.confirm('eliminar Hotel', 'Esta seguro de eliminar Esta Hotel', 
         function(){
             $.post({
                 type: $this.data('method'),
