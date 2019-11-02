@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlsvr'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,19 +52,6 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ],
-
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'baseproyecto.database.windows.net'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'baseproyecto'),
-            'username' => env('DB_USERNAME', 'proyecto'),
-            'password' => env('DB_PASSWORD', 'Base2019'),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [

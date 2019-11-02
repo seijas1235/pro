@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class HomeController extends Controller
@@ -29,7 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $role=Auth::user()->roles[0]->name;
+        if ($role=='Administrador' || $role=='super-admin') {
+            return view('home');
+        }
+        else{
+            return view('denegado');
+        }
     }
     public function pago()
     {
